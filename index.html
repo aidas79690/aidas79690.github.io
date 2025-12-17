@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nur Aida Shazriza | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --text-main: #1a202c;
+            --text-muted: #4a5568;
+            --accent-ocean: #004a99; /* UMT Ocean Blue */
+            --border-light: #e2e8f0;
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .bento-grid {
+            display: grid;
+            width: 100%;
+            max-width: 1050px;
+            gap: 16px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent-ocean);
+            transform: translateY(-2px);
+        }
+
+        /* Typography */
+        .label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-ocean);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        h1 { font-size: 1.8rem; font-weight: 700; color: var(--text-main); line-height: 1.2; }
+        h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+        p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* Specific Card Grid Positions */
+        .profile { grid-column: span 2; grid-row: span 2; }
+        .location { grid-column: span 1; }
+        .tech-stack { grid-column: span 1; grid-row: span 2; }
+        .case-study { grid-column: span 2; }
+        .hobby { grid-column: span 1; }
+        .playlist { grid-column: span 4; flex-direction: row; align-items: center; justify-content: space-between; padding: 18px 30px; }
+
+        /* Component Details */
+        .tagline { margin-top: 8px; font-weight: 500; color: var(--accent-ocean); font-style: italic; }
+        
+        .social-links { display: flex; gap: 12px; margin-top: 20px; }
+        .social-links a { 
+            font-size: 0.75rem; 
+            text-decoration: none; 
+            color: var(--text-muted); 
+            padding: 6px 12px; 
+            border: 1px solid var(--border-light); 
+            border-radius: 8px; 
+            transition: 0.2s;
+        }
+        .social-links a:hover { background: var(--accent-ocean); color: white; border-color: var(--accent-ocean); }
+
+        .subject-list { list-style: none; margin-top: 10px; }
+        .subject-list li { 
+            background: #f8fafc; 
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            margin-bottom: 6px; 
+            font-size: 0.8rem; 
+            border-left: 3px solid var(--accent-ocean);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .profile, .tech-stack, .case-study, .playlist { grid-column: span 2; }
+        }
+
+        @media (max-width: 500px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .profile, .location, .tech-stack, .case-study, .hobby, .playlist { grid-column: span 1; }
+            .playlist { flex-direction: column; align-items: flex-start; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="bento-grid">
+        <section class="card profile">
+            <div>
+                <span class="label">Food Science Student • Year 1</span>
+                <h1>NUR AIDA SHAZRIZA</h1>
+                <p class="tagline">"Innovating food safety."</p>
+                <p style="margin-top: 10px;">Universiti Malaysia Terengganu</p>
+            </div>
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">UMT Portal</a>
+            </div>
+        </section>
+
+        <section class="card location">
+            <span class="label">Location</span>
+            <h2>UMT, Kuala Nerus</h2>
+            <p>Terengganu, Malaysia</p>
+        </section>
+
+        <section class="card case-study">
+            <span class="label">Case Study</span>
+            <h2>Starch Gelatinization in Local Kuih</h2>
+            <p>Analyzing texture profiles of <strong>Kuih Lapis</strong>.</p>
+        </section>
+
+        <section class="card tech-stack">
+            <span class="label">Subjects</span>
+            <ul class="subject-list">
+                <li>Food Chemistry</li>
+                <li>Microbiology</li>
+                <li>Excel</li>
+                <li>Lab Analysis</li>
+            </ul>
+        </section>
+
+        <section class="card hobby">
+            <span class="label">Hobby</span>
+            <h2>Evening Walks</h2>
+            <p>Pantai UMT</p>
+        </section>
+
+        <section class="card playlist">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 40px; height: 40px; background: var(--accent-ocean); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">&#9835;</div>
+                <div>
+                    <h2 style="margin: 0; font-size: 0.95rem;">Focus Study Beats</h2>
+                    <p style="margin: 0; font-size: 0.8rem;">Ready to study</p>
+                </div>
+            </div>
+            <div style="cursor: pointer; font-size: 1.2rem; color: var(--accent-ocean);">&#9654;</div>
+        </section>
+    </main>
+
+</body>
+</html>
