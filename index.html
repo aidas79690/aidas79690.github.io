@@ -41,10 +41,9 @@
             max-width: 1050px;
             gap: 16px;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: auto;
         }
 
-        /* Card Styles */
+        /* Card Base Styles */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-light);
@@ -53,13 +52,36 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            /* Update: Hover Zoom Effect */
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
         }
 
         .card:hover {
             border-color: var(--accent-ocean);
-            transform: translateY(-2px);
+            transform: scale(1.025);
+            box-shadow: 0 10px 30px rgba(0, 74, 153, 0.15);
+            z-index: 10;
         }
+
+        /* Update: Profile Card with Background Image */
+        .profile { 
+            grid-column: span 2; 
+            grid-row: span 2; 
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), 
+                url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white; /* Teks putih supaya jelas atas gambar */
+            border: none;
+        }
+
+        /* Penyelarasan teks dalam kad profil */
+        .profile .label { color: #80b3ff; } 
+        .profile h1 { color: #ffffff; font-size: 2.2rem; }
+        .profile .tagline { color: #e2e8f0; font-weight: 500; }
+        .profile p { color: #f8fafc; }
 
         /* Typography */
         .label {
@@ -76,28 +98,38 @@
         h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
         p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
 
-        /* Specific Card Grid Positions */
-        .profile { grid-column: span 2; grid-row: span 2; }
+        /* Grid Placement */
         .location { grid-column: span 1; }
         .tech-stack { grid-column: span 1; grid-row: span 2; }
         .case-study { grid-column: span 2; }
+        .reflection { grid-column: span 1; }
         .hobby { grid-column: span 1; }
         .playlist { grid-column: span 4; flex-direction: row; align-items: center; justify-content: space-between; padding: 18px 30px; }
 
-        /* Component Details */
-        .tagline { margin-top: 8px; font-weight: 500; color: var(--accent-ocean); font-style: italic; }
-        
-        .social-links { display: flex; gap: 12px; margin-top: 20px; }
+        /* Social Links & Buttons */
+        .social-links { display: flex; gap: 10px; margin-top: 20px; }
         .social-links a { 
             font-size: 0.75rem; 
             text-decoration: none; 
-            color: var(--text-muted); 
-            padding: 6px 12px; 
-            border: 1px solid var(--border-light); 
-            border-radius: 8px; 
+            padding: 8px 14px; 
+            border-radius: 10px; 
             transition: 0.2s;
         }
-        .social-links a:hover { background: var(--accent-ocean); color: white; border-color: var(--accent-ocean); }
+
+        /* Glassmorphism effect for Profile Links */
+        .profile .social-links a {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        .social-links a:hover { 
+            background: var(--accent-ocean); 
+            color: white; 
+            border-color: var(--accent-ocean); 
+            transform: translateY(-2px);
+        }
 
         .subject-list { list-style: none; margin-top: 10px; }
         .subject-list li { 
@@ -109,15 +141,15 @@
             border-left: 3px solid var(--accent-ocean);
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
+        /* Responsive Breakpoints */
+        @media (max-width: 950px) {
             .bento-grid { grid-template-columns: repeat(2, 1fr); }
-            .profile, .tech-stack, .case-study, .playlist { grid-column: span 2; }
+            .profile, .tech-stack, .case-study, .playlist, .reflection { grid-column: span 2; }
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 550px) {
             .bento-grid { grid-template-columns: 1fr; }
-            .profile, .location, .tech-stack, .case-study, .hobby, .playlist { grid-column: span 1; }
+            .profile, .location, .tech-stack, .case-study, .hobby, .playlist, .reflection { grid-column: span 1; }
             .playlist { flex-direction: column; align-items: flex-start; gap: 15px; }
         }
     </style>
@@ -127,15 +159,15 @@
     <main class="bento-grid">
         <section class="card profile">
             <div>
-                <span class="label">Food Science Student • Year 1</span>
+                <span class="label">Food Science • Year 1</span>
                 <h1>NUR AIDA SHAZRIZA</h1>
                 <p class="tagline">"Innovating food safety."</p>
                 <p style="margin-top: 10px;">Universiti Malaysia Terengganu</p>
             </div>
             <div class="social-links">
-                <a href="#">LinkedIn</a>
-                <a href="#">GitHub</a>
-                <a href="#">UMT Portal</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">UMT Portal</a>
             </div>
         </section>
 
@@ -161,14 +193,31 @@
             </ul>
         </section>
 
+        <section class="card reflection">
+            <span class="label">Reflection</span>
+            <h2 style="font-size: 0.9rem;">Why Food Tech Matters</h2>
+            <p style="font-size: 0.8rem;">Sustainable food security is crucial for our future. Optimizing local methods reduces waste.</p>
+        </section>
+
         <section class="card hobby">
             <span class="label">Hobby</span>
             <h2>Evening Walks</h2>
             <p>Pantai UMT</p>
         </section>
 
-        <section class="card playlist">
-            <div style="display: flex; align-items: center; gap: 12px;">
+           <section class="card spotify-card">
+  <iframe
+    data-testid="embed-iframe"
+    style="border-radius:16px"
+    src="https://open.spotify.com/embed/track/3gfVuMwfrz8cxZjfoMg9xk?utm_source=generator"
+    width="100%"
+    height="420"
+    frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+  </iframe>
+</section>
+         <div style="display: flex; align-items: center; gap: 12px;">
                 <div style="width: 40px; height: 40px; background: var(--accent-ocean); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">&#9835;</div>
                 <div>
                     <h2 style="margin: 0; font-size: 0.95rem;">Focus Study Beats</h2>
